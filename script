@@ -1,0 +1,33 @@
+def duplicatecheck(folder):
+    '''Search a directory (including sub-directories) for possible duplicate movie
+    files and print a list of found items to the console and to .doc file'''
+    import os
+    import string
+    import re
+    a = []
+    b = []
+    strip = str.maketrans("", "", string.punctuation)
+    exclude = ['txt','jpg','srt','png','sdb','ore','nfo','NFO','dat','ini','idx','rar','sub']
+    excludename = ['sample.avi','ETRG.mp4','saMple.avi','SaMple.avi','RARBG.com.mp4','ExtraTorrentRG.mp4','Sample.avi','SAMPLE.avi','ETRG.avi']
+    for root, dirs, file in os.walk(folder):
+        for filename in file:
+            if filename not in excludename:
+                pathname = os.path.join(root, filename)
+                filename = filename.lower()
+                filename = filename.replace(' ', '')
+                filename = filename.translate(strip)
+                if filename[-3:] not in exclude:
+                    filename = filename[:-3]
+                    pattern = r'^[a-z]+'
+                    found = re.match(pattern, filename)
+                    if found:
+                        name = found.group()
+                        if name not in a:
+                            a.append(name)
+                        elif name in a:
+                            b.append(pathname)
+    print('\n'.join(b))
+    print(len(b))
+    print(len(a))
+    with open('duplicatemovies.doc','w') as myfile:
+        print('\n'.join(b), file = myfile)
