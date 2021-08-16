@@ -1,4 +1,3 @@
 # duplicate-movie-files-checker
 This is a short script written in Python 3 that I use to check for duplicate movie files on my drives. The user enters the path of the folder to be checked and the script prints a list to the console as well as to a .doc file.
-These are movies that were collected from several individuals usually by copying entire folders containing movies and other video files. I usually do not check to see whether or not I have seen the movies before copying and so I end up with a lot of duplicate files.
 This script does not automatically delete duplicate files and is intended to remain that way. The most important reason is that duplicate movies tend to have one file that has the best picture quality. It is up to the user to go through the duplicates to delete unsuitable files.
